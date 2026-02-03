@@ -67,8 +67,8 @@ racing-track-manager/
 │
 │
 ├── screenshots/
-│   ├── admin.png # Print da tela de ADMIN.
-│   └── live.png # Print da tela de LIVE/PÚBLICO.
+│   ├── admin.png        # Print da tela de ADMIN.
+│   └── live.png        # Print da tela de LIVE/PÚBLICO.
 │
 │
 └── README.md         # Documentação do projeto
