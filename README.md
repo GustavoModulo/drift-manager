@@ -1,6 +1,6 @@
 # 🏁 Racing Track Manager
 
-![Status](https://img.shields.io/badge/Status-Concluído-success)
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 ![Technology](https://img.shields.io/badge/Tech-HTML%20%7C%20CSS%20%7C%20JS%20%7C%20Supabase-blue)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
@@ -12,18 +12,11 @@ Este projeto é uma aplicação web desenvolvida para gerenciar eventos automobi
 
 ## 📸 Galeria do Projeto
 
-| Painel Administrativo | 
-|:---------------------:|
-<div align="center">
-<img src="screenshots/admin.png" width="45%" style="margin: 10px;" />
+| Painel Administrativo | Tela do Público (Ao Vivo) |
+|:---------------------:|:-------------------------:|
+| *Interface de controle de notas e chaves* | *Transmissão em tempo real e ranking* |
+| <img src="screenshots/admin.png" width="100%" alt="Print Painel Admin"> | <img src="screenshots/live.png" width="100%" alt="Print Tela Ao Vivo"> |
 
-|Tela do Público (Ao Vivo) |
-|:-------------------------:|
-<img src="screenshots/print3.png" width="45%" style="margin: 10px;" />
-<img src="screenshots/print4.png" width="45%" style="margin: 10px;" />
-<img src="screenshots/print5.png" width="45%" style="margin: 10px;" />
-<img src="screenshots/print6.png" width="45%" style="margin: 10px;" />
-</div>
 ---
 
 ## 🚀 Funcionalidades
@@ -51,8 +44,9 @@ Este projeto é uma aplicação web desenvolvida para gerenciar eventos automobi
 
 * **Frontend:** HTML5, CSS3 (CSS Grid & Flexbox), JavaScript (ES6+).
 * **Backend as a Service (BaaS):** [Supabase](https://supabase.com/) (PostgreSQL Database & Realtime Subscriptions).
-* **Bibliotecas:** * `supabase-js` (Conexão com banco de dados).
-    * `html2canvas` (Geração de imagens).
+* **Bibliotecas:**
+  * `supabase-js` (Conexão com banco de dados).
+  * `html2canvas` (Geração de imagens).
 
 ---
 
