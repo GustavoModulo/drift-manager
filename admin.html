@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN - Racing Track</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <header class="brand-header">
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Logo" class="main-logo">
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <button class="nav-item active" onclick="switchMainView('stage')" id="navStage">ETAPA ATUAL</button>
+        <button class="nav-item" onclick="switchMainView('season')" id="navSeason">RANKING GERAL</button>
+    </nav>
+
+    <div id="view-stage">
+        <div class="tabs-nav">
+            <button class="tab-btn active-pro" onclick="setCategory('PRO')" id="btnPro">PRO</button>
+            <button class="tab-btn" onclick="setCategory('LIGHT')" id="btnLight">LIGHT</button>
+        </div>
+
+        <div class="card-panel">
+            <div class="panel-header"><h3>DADOS DO PILOTO</h3></div>
+            <div class="input-row">
+                <input type="text" id="driverName" placeholder="Nome do Piloto" autocomplete="off" style="flex: 2;" oninput="this.value = this.value.toUpperCase()">
+                <input type="text" id="driverCar" placeholder="Carro (Ex: BMW E36)" autocomplete="off" style="flex: 1;" oninput="this.value = this.value.toUpperCase()">
+            </div>
+            <div class="judge-grid">
+                <div class="judge-box"><span class="judge-label">Juiz 1 (Linha)</span><input type="number" id="scoreLine" placeholder="0-30" max="30" oninput="calcTotal()"></div>
+                <div class="judge-box"><span class="judge-label">Juiz 2 (Ângulo)</span><input type="number" id="scoreAngle" placeholder="0-30" max="30" oninput="calcTotal()"></div>
+                <div class="judge-box"><span class="judge-label">Juiz 3 (Estilo)</span><input type="number" id="scoreStyle" placeholder="0-40" max="40" oninput="calcTotal()"></div>
+            </div>
+            <div style="text-align: right; width:100%; margin-bottom:10px;">
+                <span style="color:#666; font-size:0.8rem;">TOTAL</span>
+                <div id="displayTotal" style="font-size: 2rem; color: var(--primary); font-weight: bold; line-height: 1;">0</div>
+            </div>
+            <button id="btnAdd" class="btn btn-primary">LANÇAR NOTA 🏁</button>
+
+            <div class="panel-header" style="margin-top: 25px; border-top: 1px solid #333; padding-top: 10px;">
+                <h3>BATALHAS</h3> <span id="phaseIndicator" style="color:var(--primary); font-weight:bold;"></span>
+            </div>
+            <div id="bracketControls" style="display:flex; gap:10px; margin-bottom:15px;">
+                <button onclick="handleAutoBracket()" class="btn btn-primary" style="margin-top:0;">⚔️ GERAR CHAVEAMENTO</button>
+            </div>
+            <div id="battlesList" style="background:#080808; padding:5px; border-radius:4px;"><p class="empty-msg">Nenhuma batalha ativa.</p></div>
+            <div id="championDisplay" style="display:none;"></div>
+            <button id="btnAdvance" onclick="advancePhase()" class="btn btn-primary" style="margin-top:15px; display:none;">PRÓXIMA FASE</button>
+            
+            <div class="panel-header" style="margin-top: 25px; border-top: 1px solid #333; padding-top: 10px;">
+                <h3>QUALIFY</h3>
+            </div>
+            <div class="list-frame"><div id="driverListDisplay">Carregando...</div></div>
+        </div>
+    </div>
+
+    <div id="view-season" style="display: none;">
+        <div class="tabs-nav">
+            <button class="tab-btn active-pro" onclick="setSeasonCategory('PRO')" id="btnSeasonPro">PRO</button>
+            <button class="tab-btn" onclick="setSeasonCategory('LIGHT')" id="btnSeasonLight">LIGHT</button>
+        </div>
+
+        <div class="card-panel">
+            <div class="panel-header">
+                <h3>CLASSIFICAÇÃO DA TEMPORADA</h3>
+                <div style="display:flex; gap:5px;">
+                    <button onclick="captureActiveRanking()" class="btn-export">📸 EXPORTAR PNG</button>
+                </div>
+            </div>
+            
+            <div id="season-pro-content" style="background:#080808; padding:5px; border-radius:4px;">
+                <h4 style="text-align:center; color:var(--primary); margin:10px 0; font-family:'Rajdhani'; font-style:italic;">CATEGORIA PRO</h4>
+                <div id="rankingProList">Carregando...</div>
+            </div>
+
+            <div id="season-light-content" style="background:#080808; padding:5px; border-radius:4px; display:none;">
+                <h4 style="text-align:center; color:var(--light-color); margin:10px 0; font-family:'Rajdhani'; font-style:italic;">CATEGORIA LIGHT</h4>
+                <div id="rankingLightList">Carregando...</div>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 15px; text-align:center;">
+                 <p style="color:#666; font-size:0.7rem; margin-bottom:5px;">CUIDADO</p>
+                 <button onclick="forceResetAll()" class="btn btn-danger">⚠️ ZERAR A CLASSIFICAÇÃO GERAL!</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="admin-footer">
+        <p>Desenvolvido por <a href="https://www.linkedin.com/in/gustavo-modulo" target="_blank">Gustavo Henrique Modulo</a></p>
+        <span class="sub">Estudante de Desenvolvimento de Software Multiplataformas na <a href="https://www.cps.sp.gov.br/fatec/" target="_blank">FATEC</a></span>
+    </footer>
+</div>
+
+<div id="customModal" class="modal-overlay">
+    <div class="modal-box">
+        <div id="modalTitle" class="modal-title">ATENÇÃO</div>
+        <div id="modalText" class="modal-text">Confirmar ação?</div>
+        <input type="text" id="modalInput" class="modal-input" style="display:none;" placeholder="DIGITE: DELETAR">
+        <div class="modal-actions">
+            <button onclick="closeModal()" class="modal-btn cancel">CANCELAR</button>
+            <button id="modalConfirmBtn" class="modal-btn confirm">CONFIRMAR</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="js/admin.js"></script>
+</body>
+</html>

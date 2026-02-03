@@ -1,0 +1,291 @@
+/* ============================================================
+   ARQUIVO: style.css
+   DESCRIÇÃO: Estilos visuais do sistema (Cores, Layout, Fontes)
+   TEMA: Racing Track (Amarelo e Preto) - VERSÃO ESTÁVEL
+   ============================================================ */
+
+/* Fontes */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Rajdhani:ital,wght@0,700;1,800&display=swap');
+
+:root {
+    /* --- VARIÁVEIS DE CORES --- */
+    --primary: #FFE600;     /* Amarelo Racing (Destaque) */
+    --primary-text: #000000; /* Texto em fundo amarelo */
+    --light-color: #00C3FF; /* Azul Cyan (Categoria Light) */
+    --danger: #ff003c;      /* Vermelho (Perigo/Deletar) */
+    
+    /* --- FUNDOS --- */
+    --bg-body: #050505;     /* Preto Profundo */
+    --bg-card: #111111;     /* Cinza Escuro (Cards) */
+    --text-main: #ffffff;   /* Texto Branco */
+    
+    /* --- TIPOGRAFIA --- */
+    --font-ui: 'Inter', sans-serif;
+    --font-display: 'Rajdhani', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-body);
+    font-family: var(--font-ui); color: var(--text-main);
+    font-size: 14px;
+}
+
+/* =========================================
+   1. ESTILOS DO ADMIN (CORRIGIDO)
+   ========================================= */
+body:not(.live-screen) {
+    /* Fundo com grid sutil */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    
+    /* Centralização horizontal do conteúdo */
+    display: flex; 
+    justify-content: center; 
+    min-height: 100vh; 
+    padding: 20px;
+    padding-bottom: 40px; /* Espaço extra no final */
+}
+
+/* Container Principal do Admin */
+.main-wrapper { 
+    width: 100%; 
+    max-width: 1000px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+}
+
+/* --- FOOTER DO ADMIN (Simples, no final do fluxo) --- */
+.admin-footer {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #222;
+    margin-top: 20px;
+    color: #555;
+    font-size: 0.85rem;
+}
+.admin-footer a { color: var(--primary); text-decoration: none; font-weight: bold; }
+.admin-footer a:hover { text-decoration: underline; color: #fff; }
+.admin-footer .sub { display: block; font-size: 0.75rem; margin-top: 4px; opacity: 0.7; }
+
+/* Cabeçalho */
+header { text-align: center; margin-bottom: 10px; }
+.main-logo { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--primary); box-shadow: 0 0 20px rgba(255, 230, 0, 0.2); }
+
+/* Navegação (Abas Superiores) */
+.tabs-nav, .main-nav { display: flex; gap: 8px; justify-content: center; margin-bottom: 15px; flex-wrap: wrap; }
+.nav-item, .tab-btn {
+    background: #1a1a1a; border: 1px solid #333; color: #888; padding: 10px 20px;
+    font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-style: italic;
+    cursor: pointer; transition: all 0.2s; border-radius: 4px; font-size: 0.9rem; min-width: 100px;
+}
+.tab-btn:hover { background: #222; color: #fff; }
+.tab-btn.active-pro, .nav-item.active { background: var(--primary) !important; color: var(--primary-text) !important; border-color: var(--primary) !important; transform: translateY(-2px); }
+.tab-btn.active-light { background: var(--light-color) !important; color: #000 !important; border-color: var(--light-color) !important; transform: translateY(-2px); }
+
+/* Cards (Painéis) */
+.card-panel { 
+    background: var(--bg-card); border: 1px solid #333; padding: 25px; 
+    border-radius: 6px; border-top: 3px solid var(--primary); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); margin-bottom: 20px;
+}
+.panel-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 15px; }
+h3 { font-family: var(--font-display); font-style: italic; font-weight: 800; color: var(--primary); font-size: 1.1rem; text-transform: uppercase; margin: 0; }
+
+/* Formulários */
+.input-row { display: flex; gap: 10px; margin-bottom: 15px; }
+input { background: #080808; border: 1px solid #333; color: #fff; padding: 10px; width: 100%; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; border-radius: 4px; text-transform: uppercase; outline: none; }
+input:focus { border-color: var(--primary); }
+
+.judge-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+.judge-box { background: #080808; padding: 8px; border: 1px solid #333; text-align: center; border-radius: 4px; }
+.judge-label { font-size: 0.7rem; color: #666; font-weight:bold; display:block; text-transform: uppercase; }
+.judge-box input { border: none; background: transparent; font-size: 1.3rem; color: var(--primary); padding: 0; text-align: center; }
+
+/* Botões */
+.btn { width: 100%; padding: 12px; border: none; font-family: var(--font-display); font-weight: 800; font-size: 1rem; text-transform: uppercase; font-style: italic; cursor: pointer; border-radius: 4px; margin-top: 5px; transition: 0.2s; }
+.btn:active { transform: scale(0.98); }
+.btn-primary { background: var(--primary); color: var(--primary-text); box-shadow: 0 4px 0 #b3a100; }
+.btn-primary:hover { background: #fff; }
+.btn-danger { background: #330000; color: var(--danger); border: 1px solid var(--danger); margin-top: 20px; font-size: 0.8rem; padding: 10px; }
+
+/* Botão Exportar */
+.btn-export {
+    background: transparent !important;
+    border: 1px solid #555 !important;
+    color: #888 !important;
+    padding: 6px 12px; font-size: 0.75rem; border-radius: 4px;
+    cursor: pointer; font-family: var(--font-ui); font-weight: 700; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 5px; margin-left: 10px;
+    outline: none !important; box-shadow: none !important;
+}
+.btn-export:hover { border-color: var(--light-color) !important; color: var(--light-color) !important; background: rgba(0, 195, 255, 0.1) !important; }
+
+/* Listas (Admin) */
+.list-frame { margin-top: 20px; max-height: 250px; overflow-y: auto; background: #050505; border: 1px solid #222; border-radius: 4px; padding: 5px; }
+.driver-item { display: grid; grid-template-columns: 40px 1fr auto auto; align-items: center; gap: 10px; padding: 10px 15px; border-bottom: 1px solid #1a1a1a; background: #111; margin-bottom: 2px; border-radius: 4px; }
+.pos-badge { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; color: var(--primary); }
+.driver-name { font-weight: 700; color: #fff; font-size: 0.95rem; text-transform: uppercase; display: block; }
+.driver-car-label { font-size: 0.75rem; color: #666; text-transform: uppercase; }
+.telemetry-grid { display: flex; gap: 5px; }
+.run-box { background: #000; border: 1px solid #333; color: #666; padding: 4px 8px; min-width: 45px; text-align: center; font-family: var(--font-display); font-weight: 700; border-radius: 3px; }
+.run-box.best { border-color: var(--primary); color: var(--primary); background: rgba(255, 230, 0, 0.05); }
+.btn-icon { background: transparent; border: none; color: #444; cursor: pointer; padding: 5px; transition: 0.2s; }
+.btn-icon:hover { color: var(--danger); transform: scale(1.1); }
+
+/* Batalhas */
+#battlesList { margin-top: 15px; max-height: 400px; overflow-y: auto; }
+.admin-battle-item { background: #111; border: 1px solid #333; padding: 10px; margin-bottom: 10px; border-left: 3px solid var(--primary); }
+.battle-matchup-display { text-align: center; font-weight: 700; color: #fff; padding: 6px; background: #050505; border: 1px solid #222; margin: 8px 0; font-family: var(--font-display); font-style: italic; }
+.btn-decision { flex: 1; padding: 8px; background: #1a1a1a; border: 1px solid #333; color: #888; font-weight: 700; cursor: pointer; text-transform: uppercase; font-style: italic; }
+.btn-decision.winner-selected { background: var(--primary); color: #000; border-color: var(--primary); }
+
+.rank-row { display: grid; grid-template-columns: 35px 1fr auto; align-items: center; gap: 10px; background: #0f0f0f; padding: 10px 15px; border-bottom: 1px solid #222; margin-bottom: 2px; }
+.rank-row:first-child { background: #151515; border-left: 4px solid var(--primary); }
+.ranking-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+
+/* =========================================
+   2. ESTILOS DA LIVE (TV / TELÃO)
+   ========================================= */
+body.live-screen {
+    background-color: #000 !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    height: 100vh; 
+    overflow: hidden;
+    padding: 0 !important;
+    /* Centraliza o conteúdo da TV */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: flex-start;
+}
+
+body.live-screen .main-wrapper { 
+    width: 95%; 
+    height: calc(100vh - 100px); /* Altura descontando o footer */
+    max-width: 100%; 
+    display: flex; flex-direction: column; gap: 10px; 
+    padding-top: 10px;
+}
+
+.live-column { height: 100%; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+.scroll-container { flex: 1; overflow-y: auto; padding-right: 5px; padding-bottom: 20px; }
+
+/* --- FOOTER DA LIVE (FIXO) --- */
+.live-footer {
+    position: fixed;
+    bottom: 0; left: 0; width: 100%;
+    background: #000;
+    border-top: 2px solid var(--primary);
+    padding: 15px;
+    text-align: center;
+    z-index: 5000;
+    display: flex; justify-content: center; align-items: center; gap: 20px;
+    font-family: var(--font-display); text-transform: uppercase; font-style: italic;
+}
+.live-footer-text { color: #fff; font-size: 1rem; font-weight: 700; }
+.live-footer-sub { color: #666; font-size: 0.8rem; margin-left: 10px; font-family: var(--font-ui); text-transform: none; font-style: normal;}
+.live-footer a { color: var(--primary); text-decoration: none; }
+
+/* Tabs Live */
+.sub-tabs-container { display: flex; justify-content: center; gap: 12px; margin-bottom: 15px; }
+.sub-tab-btn { background: rgba(0,0,0,0.5); border: 1px solid #444; color: #666; padding: 6px 20px; font-family: var(--font-display); font-weight: 800; font-style: italic; border-radius: 50px; cursor: pointer; transition: 0.2s; }
+.sub-tab-btn.active-pro { background: var(--primary); color: #000; border-color: var(--primary); transform: scale(1.05); }
+.sub-tab-btn.active-light { background: var(--light-color); color: #000; border-color: var(--light-color); transform: scale(1.05); }
+
+/* Tabela Live */
+.live-table-header { display: grid; grid-template-columns: 60px 1fr 120px; gap: 15px; padding: 10px 20px; background: rgba(17, 17, 17, 0.9); border-bottom: 2px solid #333; font-family: var(--font-display); color: #666; font-weight: 800; letter-spacing: 1px; }
+
+body.live-screen .rank-row, body.live-screen .compact-row {
+    display: grid; grid-template-columns: 60px 1fr 120px; align-items: center; gap: 15px;
+    background: #080808;
+    padding: 12px 20px; border-bottom: 1px solid #1a1a1a;
+    margin-bottom: 4px; font-size: 1.1rem; border-left: none;
+}
+body.live-screen .rank-row:nth-child(even), body.live-screen .compact-row:nth-child(even) { background: #0f0f0f; }
+
+/* Alinhamento Nota Direita */
+body.live-screen .rank-row > :nth-child(3), 
+body.live-screen .compact-row > :nth-child(3) {
+    text-align: right;
+    justify-self: end;
+    width: 100%;
+}
+
+/* PODIUM LIVE (Fundo Sólido) */
+body.live-screen .podium-1 { 
+    background-color: #000 !important;
+    background-image: linear-gradient(90deg, rgba(255, 230, 0, 0.15), #000) !important;
+    border-left: 4px solid var(--primary) !important; 
+}
+body.live-screen .podium-2 { border-left: 4px solid #C0C0C0 !important; }
+body.live-screen .podium-3 { border-left: 4px solid #CD7F32 !important; }
+
+/* Tipografia Live */
+body.live-screen .rank-pos, body.live-screen .c-pos { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; font-style: italic; color: #666; }
+body.live-screen .podium-1 .rank-pos { color: var(--primary); font-size: 1.6rem; }
+body.live-screen .rank-name, body.live-screen .c-name { font-weight: 700; color: #fff; font-size: 1.2rem; text-transform: uppercase; }
+body.live-screen .c-car { font-size: 0.8rem; color: #666; margin-left: 8px; font-weight: 400; text-transform: uppercase; }
+body.live-screen .rank-pts, body.live-screen .c-best { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; text-align: right; color: #fff; }
+body.live-screen .podium-1 .rank-pts { color: var(--primary); }
+
+/* Bracket Live */
+.bracket-container { display: flex; justify-content: center; height: 80vh; padding-top: 15px; }
+.round-column { display: flex; flex-direction: column; justify-content: space-around; width: 200px; margin: 0 15px; position: relative; }
+.round-title { text-align: center; color: #fff; opacity: 0.5; font-family: var(--font-display); font-weight: 800; position: absolute; top: -25px; width: 100%; }
+.match-card { background: rgba(17,17,17,0.95); border: 1px solid #333; padding: 5px; border-radius: 4px; position: relative; z-index: 2; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+.match-player { font-family: var(--font-display); font-weight: 700; padding: 4px 8px; background: #000; color: #666; text-transform: uppercase; display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 2px; }
+.match-player.winner { color: #fff; border-left: 3px solid; background: #222; }
+.round-column:not(:last-child) .match-card::after { content: ''; position: absolute; right: -32px; top: 50%; width: 32px; height: 2px; background: #333; z-index: 1; }
+
+/* Batalha Atual Live */
+#view-now-content { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+.battle-now-display { display: flex; align-items: center; justify-content: center; gap: 40px; }
+.big-card { background: rgba(10, 10, 10, 0.95); border: 2px solid; padding: 40px; text-align: center; width: 450px; box-shadow: 0 0 60px rgba(0,0,0,0.6); border-radius: 8px; }
+.big-name { font-size: 3rem; font-weight: 900; color: #fff; font-family: var(--font-display); font-style: italic; text-transform: uppercase; line-height: 1; display:block; }
+.big-car { font-size: 1.2rem; color: #666; margin-top: 10px; display: block; text-transform: uppercase; font-family: var(--font-display); font-weight: 700; }
+.big-vs { font-size: 4rem; font-family: var(--font-display); color: #333; font-style: italic; font-weight: 900; }
+
+/* Botões Flutuantes Live */
+.bottom-controls { 
+    position: fixed; bottom: 100px; /* Acima do footer fixo */
+    left: 50%; transform: translateX(-50%); 
+    z-index: 5000; display: flex; gap: 10px; padding: 0; 
+    opacity: 0; transition: opacity 0.3s; 
+}
+body.live-screen:hover .bottom-controls { opacity: 1; }
+
+.btn-floating-save {
+    background: rgba(0,0,0,0.9) !important; border: 1px solid #fff !important; color: #fff !important;
+    font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-style: italic;
+    padding: 10px 24px; border-radius: 30px; cursor: pointer; font-size: 0.9rem;
+    display: flex; align-items: center; gap: 8px; outline: none !important; box-shadow: none !important;
+}
+.btn-floating-save:hover { background: #fff !important; color: #000 !important; }
+.btn-floating-save:active { transform: scale(0.95); }
+
+/* Modals & Toast */
+#toast-container { position: fixed; top: 20px; right: 20px; z-index: 20000; display: flex; flex-direction: column; gap: 10px; }
+.toast { padding: 12px 20px; border-left: 4px solid #333; font-size: 0.95rem; background: #151515; color: #fff; box-shadow: 0 5px 20px rgba(0,0,0,0.6); border-radius: 4px; }
+.toast.success { border-left-color: var(--primary); }
+.toast.error { border-left-color: var(--danger); }
+.toast.info { border-left-color: var(--light-color); }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 10000; display: none; justify-content: center; align-items: center; }
+.modal-box { background: #111; border: 2px solid var(--primary); padding: 25px; width: 90%; max-width: 380px; text-align: center; border-radius: 6px; }
+.modal-title { font-size: 1.5rem; color: #fff; margin-bottom: 10px; font-family: var(--font-display); font-style: italic; font-weight:800; }
+.modal-text { font-size: 0.95rem; margin-bottom: 25px; color: #999; }
+.modal-btn { flex: 1; padding: 12px; border: none; font-weight: 800; cursor: pointer; text-transform: uppercase; font-family: var(--font-display); font-style: italic; border-radius: 4px; }
+.modal-btn.confirm { background: var(--primary); color: #000; }
+.modal-btn.cancel { background: transparent; border: 1px solid #444; color: #888; }
+.modal-btn.danger { background: var(--danger); color: #fff; }
+.modal-input { background: #000; border: 1px solid #333; color: #fff; padding: 12px; width: 100%; margin-bottom: 20px; text-align: center; text-transform: uppercase; border-radius: 4px; font-size: 1.1rem; }
+
+#championDisplay { margin-top: 20px; padding: 30px; border: 2px solid var(--primary); background: #080808; text-align:center; border-radius: 8px; }
+.champion-name { font-size: 3rem; font-family:var(--font-display); font-weight:900; font-style:italic; color:var(--primary); text-transform:uppercase; }
+.empty-msg { text-align: center; padding: 20px; color: #444; font-size: 0.9rem; font-style: italic; font-weight: 700; text-transform: uppercase; opacity:0.5; margin-top:30px; }

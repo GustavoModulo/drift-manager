@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PÚBLICO - Racing Track</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="live-screen">
+
+    <div class="main-wrapper">
+        <header class="brand-header" style="border:none; padding-top:10px;">
+            <div class="logo-container"><img src="img/logo.png" class="main-logo"></div>
+        </header>
+
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="showMainTab('qualify')">CLASSIFICAÇÃO</button>
+            <button class="tab-btn" onclick="showMainTab('bracket')">CHAVEAMENTO</button>
+            <button class="tab-btn" onclick="showMainTab('now')">B. ATUAL</button>
+            <button class="tab-btn" onclick="showMainTab('season')">RANKING GERAL</button>
+        </div>
+
+        <div id="view-qualify" class="live-column">
+            <div class="sub-tabs-container">
+                <button class="sub-tab-btn active-pro" onclick="toggleCategory('qualify', 'pro')">PRO</button>
+                <button class="sub-tab-btn" onclick="toggleCategory('qualify', 'light')">LIGHT</button>
+            </div>
+            
+            <div class="live-table-header"><span>POS</span><span>PILOTO</span><span style="text-align:right">NOTA</span></div>
+            
+            <div id="qualify-pro-container" class="scroll-container"><div id="liveQualifyPro">Carregando...</div></div>
+            <div id="qualify-light-container" class="scroll-container" style="display:none;"><div id="liveQualifyLight">Carregando...</div></div>
+            
+            <div class="bottom-controls">
+                <button onclick="captureActiveView('qualify')" class="btn-floating-save">📸 EXPORTAR PNG</button>
+            </div>
+        </div>
+
+        <div id="view-bracket" class="live-column" style="display:none;">
+            <div class="sub-tabs-container">
+                <button class="sub-tab-btn active-pro" onclick="toggleCategory('bracket', 'pro')">PRO</button>
+                <button class="sub-tab-btn" onclick="toggleCategory('bracket', 'light')">LIGHT</button>
+            </div>
+            <div id="bracket-pro-container" style="height:100%;"><div id="liveBracketPro" class="bracket-tree"><p class="empty-msg">Aguardando...</p></div></div>
+            <div id="bracket-light-container" style="display:none; height:100%;"><div id="liveBracketLight" class="bracket-tree"><p class="empty-msg">Aguardando...</p></div></div>
+            
+            <div class="bottom-controls">
+                <button onclick="captureActiveView('bracket')" class="btn-floating-save">📸 EXPORTAR PNG</button>
+            </div>
+        </div>
+
+        <div id="view-now" class="live-column" style="display:none;">
+            <div id="view-now-content" style="text-align:center;">
+                <h2 style="font-family:var(--font-display); font-style:italic; margin-top:20px; font-size:1.2rem; color:#666;">PRÓXIMA BATALHA</h2>
+                <div style="margin-top:50px; font-size:2rem; font-weight:bold; color:var(--primary);">AGUARDANDO...</div>
+            </div>
+            
+            <div class="bottom-controls">
+                <button onclick="captureElement('view-now-content', 'batalha_atual')" class="btn-floating-save">📸 EXPORTAR PNG</button>
+            </div>
+        </div>
+
+        <div id="view-season" class="live-column" style="display:none;">
+            <div class="sub-tabs-container">
+                <button class="sub-tab-btn active-pro" onclick="toggleCategory('season', 'pro')">PRO</button>
+                <button class="sub-tab-btn" onclick="toggleCategory('season', 'light')">LIGHT</button>
+            </div>
+            
+            <div class="live-table-header"><span>POS</span><span>PILOTO</span><span style="text-align:right">PONTOS</span></div>
+
+            <div id="season-pro-container" class="scroll-container"><div id="liveRankingPro">Carregando...</div></div>
+            <div id="season-light-container" class="scroll-container" style="display:none;"><div id="liveRankingLight">Carregando...</div></div>
+            
+            <div class="bottom-controls">
+                <button onclick="captureActiveView('season')" class="btn-floating-save">📸 EXPORTAR PNG</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="live-footer">
+        <span class="live-footer-text">Desenvolvido por <a href="https://www.linkedin.com/in/gustavo-modulo" target="_blank">Gustavo Henrique Modulo</a></span>
+        <span class="live-footer-sub">Estudante de Desenvolvimento de Software Multiplataformas na <a href="https://www.cps.sp.gov.br/fatec/" target="_blank">FATEC</a></span>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="js/live.js"></script>
+    <script>
+        let activeCat = 'pro'; 
+        function showMainTab(id) {
+            document.querySelectorAll('.live-column').forEach(el => el.style.display = 'none');
+            document.getElementById('view-' + id).style.display = 'block';
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        function toggleCategory(view, cat) {
+            activeCat = cat;
+            document.getElementById(`${view}-pro-container`).style.display = 'none';
+            document.getElementById(`${view}-light-container`).style.display = 'none';
+            document.getElementById(`${view}-${cat}-container`).style.display = 'block';
+            const container = document.querySelector(`#view-${view} .sub-tabs-container`);
+            const buttons = container.querySelectorAll('.sub-tab-btn');
+            buttons.forEach(btn => btn.className = 'sub-tab-btn');
+            if(cat === 'pro') buttons[0].classList.add('active-pro');
+            else buttons[1].classList.add('active-light');
+        }
+    </script>
+</body>
+</html>
