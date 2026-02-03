@@ -1,4 +1,4 @@
-# 🏁 Racing Track Manager
+# 🏁 Racing Track Drift Manager
 
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 ![Technology](https://img.shields.io/badge/Tech-HTML%20%7C%20CSS%20%7C%20JS%20%7C%20Supabase-blue)
