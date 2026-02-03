@@ -10,14 +10,19 @@ Este projeto é uma aplicação web desenvolvida para gerenciar eventos automobi
 
 ---
 
-## 📸 Screenshots
+## 📸 Galeria do Projeto
 
+| Painel Administrativo | 
+|:---------------------:|
 <div align="center">
-  <img src="screenshots/admin.png" width="45%" style="margin: 10px;" />
-  <img src="screenshots/live.png" width="45%" style="margin: 10px;" />
-  
-  <img src="screenshots/print3.png" width="45%" style="margin: 10px;" />
-  <img src="screenshots/print4.png" width="45%" style="margin: 10px;" />
+<img src="screenshots/admin.png" width="45%" style="margin: 10px;" />
+
+|Tela do Público (Ao Vivo) |
+|:-------------------------:|
+<img src="screenshots/print3.png" width="45%" style="margin: 10px;" />
+<img src="screenshots/print4.png" width="45%" style="margin: 10px;" />
+<img src="screenshots/print5.png" width="45%" style="margin: 10px;" />
+<img src="screenshots/print6.png" width="45%" style="margin: 10px;" />
 </div>
 ---
 
