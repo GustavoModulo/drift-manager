@@ -65,4 +65,10 @@ racing-track-manager/
 │   ├── admin.js      # Lógica de CRUD, cálculos e gestão de estado
 │   └── live.js       # Lógica de atualização em tempo real (Listeners)
 │
+│
+├── screenshots/
+│   ├── admin.png # Print da tela de ADMIN.
+│   └── live.png # Print da tela de LIVE/PÚBLICO.
+│
+│
 └── README.md         # Documentação do projeto
