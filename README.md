@@ -12,11 +12,13 @@ Este projeto é uma aplicação web desenvolvida para gerenciar eventos automobi
 
 ## 📸 Screenshots
 
-| Painel Administrativo | Tela do Público (Ao Vivo) |
-|:---------------------:|:-------------------------:|
-| *Interface de controle de notas e chaves* | *Transmissão em tempo real e ranking* |
-| (Adicione um print aqui depois) | (Adicione um print aqui depois) |
-
+<div align="center">
+  <img src="screenshots/admin.png" width="45%" style="margin: 10px;" />
+  <img src="screenshots/live.png" width="45%" style="margin: 10px;" />
+  
+  <img src="screenshots/print3.png" width="45%" style="margin: 10px;" />
+  <img src="screenshots/print4.png" width="45%" style="margin: 10px;" />
+</div>
 ---
 
 ## 🚀 Funcionalidades
